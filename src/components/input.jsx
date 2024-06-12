@@ -1,19 +1,20 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
-export default function BasicTextFields() {
+export default function FormPropsTextFields() {
   return (
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        "& .MuiTextField-root": { m: 2, width: "45ch"},
       }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      
+      <div>
+        <TextField id="outlined-search" label="Enter To Do" type="search" />
+      </div>
     </Box>
   );
 }

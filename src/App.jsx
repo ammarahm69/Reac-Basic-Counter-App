@@ -1,36 +1,45 @@
-import OutlinedCard from './components/card';
-import Btn from './components/button';
-import Appbar from './components/appBar'
-import './App.css';
-import { useState } from 'react';
-import { Button } from '@mui/material';
+import "./App.css";
+import InputFeild from "./components/input";
+import Btn from "./components/button";
+import Navbar from "./components/appBar";
+
+import { useState } from "react";
+
 function App() {
-  const [counter, setCounter] = useState(0)
-  const inc = ()=>{setCounter(counter+ 1)}
-  const dec = ()=>{setCounter(counter -1)}
-  // const arr = ['One', 'Two', 'Three','Four'];
-  // const descriptions = [
-  //   'Description for the first card.',
-  //   'Description for the second card.',
-  //   'Description for the third card.',
-  //   'Description for the fouth card.',
-
-  // ]; 
+  const [inputValue, setinputValue] = useState("");
+  const [items, setItems] = useState([]);
+  let addItem = () => {
+    if (inputValue !== "") {
+      setItems([...items, inputValue]);
+    } else {
+      alert("Please Enter a value");
+    }
+  };
+  let deleteItem = () => {
+    setItems([]);
   
-  return(
+  };
+  return (
     <>
-    <h1>Counter App</h1>
-   <h2>{counter}</h2>
-   <Btn onClick={inc} type='Increment'/>
-   <Btn onClick={dec} type='Decrement'/>
-    
+      <Navbar />
+      <div className="flex-container">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setinputValue(e.target.value)}
+          placeholder="Enter To Do"
+        />
+        <button onClick={addItem}>Add To Do</button>
+        <button onClick={deleteItem}>Delete</button>
+      </div>
 
-    {/* <Appbar />
-      {arr.map((title, index) => (
-        <OutlinedCard key={index} title={title}  descriptions={descriptions[index]}/>
-      ))}
-     <Btn type="Click Me"/> */}
-   
+      <div>
+        {items.map((value, index) => (
+          <div key={index}>
+            <h1>{value}</h1>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
